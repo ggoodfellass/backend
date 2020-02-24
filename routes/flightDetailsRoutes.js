@@ -8,15 +8,15 @@ module.exports = function(app) {
 
   app
     .route('/flight-details')
-    .get(flightDetailsCtrl.show);
+    .get(flightDetailsCtrl.index);
 
   app
     .route('/flight-details/:id')
     .patch(flightDetailsCtrl.update);
 
-  // app
-  //   .route('/flight-details/:id')
-  //   .put(flightDetailsCtrl.update);
+  app
+    .route('/flight-details/:id')
+    .get(flightDetailsCtrl.show);
 
   // app
   //   .route('/flight-details/:id')

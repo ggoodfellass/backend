@@ -23,13 +23,21 @@ exports.create = async (req, res) => {
   })
 }
 
-exports.show = async (req, res) => {
+exports.index = async (req, res) => {
   let flightDetails = await FlightDetails.find().exec()
   res.status(200).json({ flightDetails: flightDetails })
 }
 
+exports.show = async (req, res) => {
+  await FlightDetails.findOne({_id: req.params.id}, (err, flightDetail) => {
+    if (err) {
+      return res.status(400).json({ Errors: err.errors })
+    }
+    res.status(200).json({ flightDetail: flightDetail })
+  })
+}
+
 exports.update = async (req, res) => {
-  console.log(req.params.id)
   await FlightDetails.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, {new: true, useFindAndModify: false, runValidators: true}, (err, flightDetail) => {
     if (err) {
       return res.status(400).json({ Errors: err.errors })
