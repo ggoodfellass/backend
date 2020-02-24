@@ -45,3 +45,12 @@ exports.update = async (req, res) => {
     res.status(200).json({ flightDetail: flightDetail })
   })
 }
+
+exports.delete = async (req, res) => {
+  await FlightDetails.deleteOne({ _id:  req.params.id}, (err) => {
+    if(err) {
+      return res.status(400).json({ Errors: err.errors })
+    }
+    res.status(200).json({ message: "Flight Details deleted." })
+  })
+}

@@ -1,5 +1,5 @@
  'use strict';
-module.exports = function(app) {
+module.exports = (app) => {
  let flightDetailsCtrl = require('../controllers/flightDetailsController');
 
   app
@@ -18,7 +18,7 @@ module.exports = function(app) {
     .route('/flight-details/:id')
     .get(flightDetailsCtrl.show);
 
-  // app
-  //   .route('/flight-details/:id')
-  //   .delete(flightDetailsCtrl.delete);
+  app
+    .route('/flight-details/:id')
+    .delete(flightDetailsCtrl.delete);
 };
