@@ -22,3 +22,8 @@ exports.create = async (req, res) => {
     res.status(201).json({flightDetail: flightDetail});
   })
 }
+
+exports.show = async (req, res) => {
+  let flightDetails = await FlightDetails.find().exec()
+  res.status(200).json({ flightDetails: flightDetails });
+}
