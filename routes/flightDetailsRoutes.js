@@ -10,6 +10,10 @@ module.exports = function(app) {
     .route('/flight-details')
     .get(flightDetailsCtrl.show);
 
+  app
+    .route('/flight-details/:id')
+    .patch(flightDetailsCtrl.update);
+
   // app
   //   .route('/flight-details/:id')
   //   .put(flightDetailsCtrl.update);

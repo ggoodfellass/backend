@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 let mongoose      = require('mongoose'),
     FlightDetails = mongoose.model('FlightDetails')
@@ -13,17 +13,27 @@ exports.create = async (req, res) => {
       var errors = err.errors
       for (var key in errors) {
         if (errors.hasOwnProperty(key)) {
-          throwErrors.push(errors[key].message);
-          console.log(errors[key].message);
+          throwErrors.push(errors[key].message)
+          console.log(errors[key].message)
         }
       }
-      return res.status(400).json({message: throwErrors});
+      return res.status(400).json({message: throwErrors})
     }
-    res.status(201).json({flightDetail: flightDetail});
+    res.status(201).json({flightDetail: flightDetail})
   })
 }
 
 exports.show = async (req, res) => {
   let flightDetails = await FlightDetails.find().exec()
-  res.status(200).json({ flightDetails: flightDetails });
+  res.status(200).json({ flightDetails: flightDetails })
+}
+
+exports.update = async (req, res) => {
+  console.log(req.params.id)
+  await FlightDetails.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, {new: true, useFindAndModify: false, runValidators: true}, (err, flightDetail) => {
+    if (err) {
+      return res.status(400).json({ Errors: err.errors })
+    }
+    res.status(200).json({ flightDetail: flightDetail })
+  })
 }
