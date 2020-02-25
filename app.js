@@ -7,7 +7,7 @@ var express       = require('express'),
     bodyParser = require('body-parser');
   
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DBURL || 'mongodb://localhost/inflightdetails'); 
+mongoose.connect(process.env.DBURL || 'mongodb://mongo:27017/inflightdetails'); 
 
 
 app.use(cors())
