@@ -29,11 +29,13 @@ var flightDetailsSchema = new Schema({
   },
   scheduledArrival: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: [true, 'Scheduled Arrival cannot be blank.']
   },
   scheduledDeparture: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: [true, 'Scheduled Departure cannot be blank.']
   },
   status: {
     type: String,
